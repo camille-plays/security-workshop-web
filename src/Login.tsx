@@ -1,31 +1,39 @@
 import React from "react";
 import { AuthResponse } from "./models/authResponse";
 import { api } from "./utils/api";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
 
+  const navigate = useNavigate();
+
   const handleLogin = () => {
-    api<AuthResponse>("/api/auth/login", { username, password })
-    .then((response) => {
-      document.cookie = `userId=${response.userId}; path=/`;
-      document.cookie = `accessToken=${response.accessToken}; path=/`;
-      console.log(document.cookie);
+    api<undefined>({
+      url: "/api/auth/login",
+      body: { username, password },
+      method: "POST",
     })
-    .catch((error) => {
-      alert(error)
-    });
+      .then((response) => {
+        navigate("/dashboard");
+      })
+      .catch((error) => {
+        alert(error);
+      });
   };
 
   const handleRegister = () => {
-    api<AuthResponse>("/api/auth/register", { username, password })
+    api<undefined>({
+      url: "/api/auth/register",
+      body: { username, password },
+      method: "POST",
+    })
       .then((response) => {
-        document.cookie = `userId=${response.userId}; path=/`;
-        document.cookie = `accessToken=${response.accessToken}; path=/`;
-            })
+        navigate("/dashboard");
+      })
       .catch((error) => {
-        alert(error)
+        alert(error);
       });
   };
 

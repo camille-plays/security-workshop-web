@@ -1,13 +1,36 @@
-export function api<T>(url: string, body: any): Promise<T> {
-    return fetch("http://localhost:8080" + url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(response.statusText)
-        }
-        return response.json() as Promise<T>
-      })
+
+
+export function api<T>({url, body, method} : {
+  url: string,
+  method: string
+  body?: any,
+
+}): Promise<T | undefined> {
+  const requestOptions: RequestInit = {
+    
+    method,
+    credentials: "include",
+    headers: { "Content-Type": "application/json"}
+  };
+
+  if (method === "POST") {
+    requestOptions.body = JSON.stringify(body);
   }
+
+  return fetch("http://localhost:8080" + url, requestOptions)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+
+      if (response.status === 204) {
+        const cookies = response.headers.get("Set-Cookie");
+        if (cookies) {
+          document.cookie = cookies;
+        }
+        return undefined;
+      }
+
+      return response.json() as Promise<T>;
+    });
+}
