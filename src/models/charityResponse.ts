@@ -3,3 +3,4 @@ export type CharityResponse = {
     name: string;
     description: string;
 };
+

@@ -1,13 +1,10 @@
-
-
 export function api<T>({url, body, method} : {
   url: string,
   method: string
   body?: any,
 
 }): Promise<T | undefined> {
-  const requestOptions: RequestInit = {
-    
+  const requestOptions: RequestInit = { 
     method,
     credentials: "include",
     headers: { "Content-Type": "application/json"}
@@ -24,10 +21,6 @@ export function api<T>({url, body, method} : {
       }
 
       if (response.status === 204) {
-        const cookies = response.headers.get("Set-Cookie");
-        if (cookies) {
-          document.cookie = cookies;
-        }
         return undefined;
       }
 
