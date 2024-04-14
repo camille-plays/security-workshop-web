@@ -1,21 +1,25 @@
-export function api<T>({url, body, method} : {
-  url: string,
-  method: string
-  body?: any,
-
+export function api<T>({
+  url,
+  body,
+  method,
+}: {
+  url: string;
+  method: string;
+  body?: any;
 }): Promise<T | undefined> {
-  const requestOptions: RequestInit = { 
+  const requestOptions: RequestInit = {
     method,
     credentials: "include",
-    headers: { "Content-Type": "application/json"}
+    headers: { "Content-Type": "application/json" },
   };
 
   if (method === "POST") {
     requestOptions.body = JSON.stringify(body);
   }
 
-  return fetch("http://localhost:8080" + url, requestOptions)
-    .then(response => {
+  return fetch("http://localhost:8080" + url, requestOptions).then(
+    (response) => {
+      console.log(response);
       if (!response.ok) {
         throw new Error(response.statusText);
       }
@@ -24,6 +28,11 @@ export function api<T>({url, body, method} : {
         return undefined;
       }
 
+      if (response.status === 201) {
+        return undefined;
+      }
+
       return response.json() as Promise<T>;
-    });
+    }
+  );
 }

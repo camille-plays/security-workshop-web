@@ -4,8 +4,8 @@ import ReactDOM from "react-dom/client";
 import './index.css';
 import Login from './Login';
 import Dashboard from './Dashboard';
-import reportWebVitals from './reportWebVitals';
 import Logout from './Logout';
+import Transfer from './Transfer';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -17,7 +17,7 @@ root.render(
         <Route index element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/logout" element={<Logout />} />
+        <Route path="/transfers" element={<Transfer />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
