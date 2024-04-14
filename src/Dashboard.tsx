@@ -92,13 +92,15 @@ export const Dashboard = () => {
                 <div className="h-[1px] w-full bg-slate-300 px-4 my-2"></div>
                 <p className="">{charity.description}</p>
               </div>
-              <button
-                className="bg-rose-400 p-2 rounded-lg mt-4 hover:bg-rose-700 flex justify-center items-center"
-                onClick={() => donate(charity.balanceId)}
-              >
-                <BiDonateHeart color="white" />
-                <p className="text-white text-center pl-2">Donate</p>
-              </button>
+              <div className="flex items-center justify-center">
+                <button
+                  className="bg-rose-400 p-2 rounded-lg mt-4 hover:bg-rose-700 flex justify-center items-center"
+                  onClick={() => donate(charity.balanceId)}
+                >
+                  <BiDonateHeart color="white" />
+                  <p className="text-white text-center pl-2">Donate £1</p>
+                </button>
+              </div>
             </div>
           ))}
         </div>
