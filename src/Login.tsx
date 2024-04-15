@@ -16,7 +16,7 @@ function Login() {
       body: { username, password },
       method: "POST",
     })
-      .then((response) => {
+      .then((_) => {
         navigate("/dashboard");
       })
       .catch((error) => {
@@ -30,7 +30,7 @@ function Login() {
       body: { username, password },
       method: "POST",
     })
-      .then((response) => {
+      .then((_) => {
         navigate("/dashboard");
       })
       .catch((error) => {
@@ -40,7 +40,7 @@ function Login() {
 
   return (
     <div className="h-screen flex items-center justify-center">
-      <div className="bg-slate-800 py-6 px-4 flex flex-col rounded-xl w-1/3 shadow-rose-200 shadow-2xl">
+      <div className="bg-slate-800 py-6 px-4 flex flex-col rounded-xl w-2/3 md:w-1/3 shadow-rose-200 shadow-2xl">
         <div className="text-center pb-4">
           <h1 className="text-2xl font-bold text-rose-200">Please login</h1>
         </div>
