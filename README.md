@@ -1,3 +1,2 @@
-# wise-women-code security exercise
-Frontend code for the hands on security exercise for the wise-women-code event
-
+# Security workshop
+Frontend code for a capture the flag security workshop as part of a coding bootcamp event
